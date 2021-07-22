@@ -1,194 +1,318 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
-class CalculatorPage extends StatelessWidget {
+class CalculatorPage extends StatefulWidget {
+  @override
+  createState() => _CalculatorPageState();
+}
+
+class _CalculatorPageState extends State<CalculatorPage> {
+  String _labelText = '';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Alert Page')),
+      appBar: AppBar(
+        title: Text('Calculadora'),
+        centerTitle: true,
+      ),
       body: Column(
         children: [
+          Padding(padding: EdgeInsets.only(top: 40.0)),
           _labelTotal(),
+          Padding(padding: EdgeInsets.only(top: 20.0)),
           Row(children: [
-            _deleteAll(),
-            _deleteLast(),
+            Expanded(child: _deleteAll()),
+            Expanded(child: _deleteLast())
           ]),
+          Padding(padding: EdgeInsets.only(top: 2.0)),
+          Row(children: [
+            Expanded(child: _buttons7()),
+            Expanded(child: _buttons8()),
+            Expanded(child: _buttons9())
+          ]),
+          Padding(padding: EdgeInsets.only(top: 2.0)),
           Row(
-            children: [_buttons7(), _buttons8(), _buttons9()],
+            children: [
+              Expanded(child: _buttons4()),
+              Expanded(child: _buttons5()),
+              Expanded(child: _buttons6())
+            ],
           ),
+          Padding(padding: EdgeInsets.only(top: 2.0)),
           Row(
-            children: [_buttons4(), _buttons5(), _buttons6()],
+            children: [
+              Expanded(child: _buttons1()),
+              Expanded(child: _buttons2()),
+              Expanded(child: _buttons3())
+            ],
           ),
+          Padding(padding: EdgeInsets.only(top: 2.0)),
           Row(
-            children: [_buttons1(), _buttons2(), _buttons3()],
+            children: [
+              Expanded(child: _buttonRest()),
+              Expanded(child: _button0()),
+              Expanded(child: _buttonAdd())
+            ],
           ),
+          Padding(padding: EdgeInsets.only(top: 2.0)),
           Row(
-            children: [_buttonRest(), _button0(), _buttonAdd()],
-          ),
-          Row(
-            children: [_buttonDivide(), _buttonMultiply(), _buttonEqualTo()],
+            children: [
+              Expanded(child: _buttonDivide()),
+              Expanded(child: _buttonMultiply()),
+              Expanded(child: _buttonEqualTo())
+            ],
           )
         ],
       ),
     );
   }
-}
 
-Widget _labelTotal() {
-  return TextFormField(
-    decoration: InputDecoration(
-        border: UnderlineInputBorder(), labelText: 'numeros', enabled: false),
-  );
-}
+  Widget _labelTotal() {
+    return TextFormField(
+      textAlign: TextAlign.center,
+      decoration: InputDecoration(
+          border: UnderlineInputBorder(), hintText: _labelText, enabled: false),
+      style: TextStyle(fontSize: 24.0, fontWeight: FontWeight.bold),
+    );
+  }
 
-Widget _deleteAll() {
-  return OutlinedButton(
-    onPressed: () {
-      print('delete all');
-    },
-    child: const Text('C'),
-  );
-}
+  Widget _deleteAll() {
+    return OutlinedButton(
+        onPressed: () {
+          _labelText = '';
+          setState(() {});
+        },
+        child: const Text('C'),
+        style: TextButton.styleFrom(
+          padding: const EdgeInsets.all(12.0),
+          textStyle: const TextStyle(fontSize: 15),
+          backgroundColor: Colors.transparent,
+        ));
+  }
 
-Widget _deleteLast() {
-  return OutlinedButton(
-    onPressed: () {
-      print('delete last');
-    },
-    child: const Text('<'),
-  );
-}
+  Widget _deleteLast() {
+    return OutlinedButton(
+        onPressed: () {
+          print('delete last');
+          setState(() {});
+        },
+        child: const Text('<'),
+        style: TextButton.styleFrom(
+          padding: const EdgeInsets.all(12.0),
+          textStyle: const TextStyle(fontSize: 15),
+          backgroundColor: Colors.transparent,
+        ));
+  }
 
-Widget _buttons7() {
-  return OutlinedButton(
-    onPressed: () {
-      print('number 7');
-    },
-    child: const Text('7'),
-  );
-}
+  Widget _buttons7() {
+    return OutlinedButton(
+        onPressed: () {
+          _labelText += '7';
+          setState(() {});
+        },
+        child: const Text('7'),
+        style: TextButton.styleFrom(
+          padding: const EdgeInsets.all(12.0),
+          textStyle: const TextStyle(fontSize: 15),
+          backgroundColor: Colors.transparent,
+        ));
+  }
 
-Widget _buttons8() {
-  return OutlinedButton(
-    onPressed: () {
-      print('number 8');
-    },
-    child: const Text('8'),
-  );
-}
+  Widget _buttons8() {
+    return OutlinedButton(
+        onPressed: () {
+          _labelText += '8';
+          setState(() {});
+        },
+        child: const Text('8'),
+        style: TextButton.styleFrom(
+          padding: const EdgeInsets.all(12.0),
+          textStyle: const TextStyle(fontSize: 15),
+          backgroundColor: Colors.transparent,
+        ));
+  }
 
-Widget _buttons9() {
-  return OutlinedButton(
-    onPressed: () {
-      print('number 9');
-    },
-    child: const Text('9'),
-  );
-}
+  Widget _buttons9() {
+    return OutlinedButton(
+        onPressed: () {
+          _labelText += '9';
+          setState(() {});
+        },
+        child: const Text('9'),
+        style: TextButton.styleFrom(
+          padding: const EdgeInsets.all(12.0),
+          textStyle: const TextStyle(fontSize: 15),
+          backgroundColor: Colors.transparent,
+        ));
+  }
 
-Widget _buttons4() {
-  return OutlinedButton(
-    onPressed: () {
-      print('number 4');
-    },
-    child: const Text('4'),
-  );
-}
+  Widget _buttons4() {
+    return OutlinedButton(
+        onPressed: () {
+          _labelText += '4';
+          setState(() {});
+        },
+        child: const Text('4'),
+        style: TextButton.styleFrom(
+          padding: const EdgeInsets.all(12.0),
+          textStyle: const TextStyle(fontSize: 15),
+          backgroundColor: Colors.transparent,
+        ));
+  }
 
-Widget _buttons5() {
-  return OutlinedButton(
-    onPressed: () {
-      print('number 5');
-    },
-    child: const Text('5'),
-  );
-}
+  Widget _buttons5() {
+    return OutlinedButton(
+        onPressed: () {
+          _labelText += '5';
+          setState(() {});
+        },
+        child: const Text('5'),
+        style: TextButton.styleFrom(
+          padding: const EdgeInsets.all(12.0),
+          textStyle: const TextStyle(fontSize: 15),
+          backgroundColor: Colors.transparent,
+        ));
+  }
 
-Widget _buttons6() {
-  return OutlinedButton(
-    onPressed: () {
-      print('number 6');
-    },
-    child: const Text('6'),
-  );
-}
+  Widget _buttons6() {
+    return OutlinedButton(
+        onPressed: () {
+          _labelText += '6';
+          setState(() {});
+        },
+        child: const Text('6'),
+        style: TextButton.styleFrom(
+          padding: const EdgeInsets.all(12.0),
+          textStyle: const TextStyle(fontSize: 15),
+          backgroundColor: Colors.transparent,
+        ));
+  }
 
-Widget _buttons1() {
-  return OutlinedButton(
-    onPressed: () {
-      print('number 1');
-    },
-    child: const Text('1'),
-  );
-}
+  Widget _buttons1() {
+    return OutlinedButton(
+        onPressed: () {
+          _labelText += '1';
+          setState(() {});
+        },
+        child: const Text('1'),
+        style: TextButton.styleFrom(
+          padding: const EdgeInsets.all(12.0),
+          textStyle: const TextStyle(fontSize: 15),
+          backgroundColor: Colors.transparent,
+        ));
+  }
 
-Widget _buttons2() {
-  return OutlinedButton(
-    onPressed: () {
-      print('number 2');
-    },
-    child: const Text('2'),
-  );
-}
+  Widget _buttons2() {
+    return OutlinedButton(
+        onPressed: () {
+          _labelText += '2';
+          setState(() {});
+        },
+        child: const Text('2'),
+        style: TextButton.styleFrom(
+          padding: const EdgeInsets.all(12.0),
+          textStyle: const TextStyle(fontSize: 15),
+          backgroundColor: Colors.transparent,
+        ));
+  }
 
-Widget _buttons3() {
-  return OutlinedButton(
-    onPressed: () {
-      print('number 3');
-    },
-    child: const Text('3'),
-  );
-}
+  Widget _buttons3() {
+    return OutlinedButton(
+        onPressed: () {
+          _labelText += '3';
+          setState(() {});
+        },
+        child: const Text('3'),
+        style: TextButton.styleFrom(
+          padding: const EdgeInsets.all(12.0),
+          textStyle: const TextStyle(fontSize: 15),
+          backgroundColor: Colors.transparent,
+        ));
+  }
 
-Widget _buttonRest() {
-  return OutlinedButton(
-    onPressed: () {
-      print('button rest');
-    },
-    child: const Text('-'),
-  );
-}
+  Widget _buttonRest() {
+    return OutlinedButton(
+        onPressed: () {
+          _labelText += '-';
+          setState(() {});
+        },
+        child: const Text('-'),
+        style: TextButton.styleFrom(
+          padding: const EdgeInsets.all(12.0),
+          textStyle: const TextStyle(fontSize: 15),
+          backgroundColor: Colors.transparent,
+        ));
+  }
 
-Widget _button0() {
-  return OutlinedButton(
-    onPressed: () {
-      print('button 0');
-    },
-    child: const Text('0'),
-  );
-}
+  Widget _button0() {
+    return OutlinedButton(
+        onPressed: () {
+          _labelText += '0';
+          setState(() {});
+        },
+        child: const Text('0'),
+        style: TextButton.styleFrom(
+          padding: const EdgeInsets.all(12.0),
+          textStyle: const TextStyle(fontSize: 15),
+          backgroundColor: Colors.transparent,
+        ));
+  }
 
-Widget _buttonAdd() {
-  return OutlinedButton(
-    onPressed: () {
-      print('button add');
-    },
-    child: const Text('+'),
-  );
-}
+  Widget _buttonAdd() {
+    return OutlinedButton(
+        onPressed: () {
+          _labelText += '+';
+          setState(() {});
+        },
+        child: const Text('+'),
+        style: TextButton.styleFrom(
+          padding: const EdgeInsets.all(12.0),
+          textStyle: const TextStyle(fontSize: 15),
+          backgroundColor: Colors.transparent,
+        ));
+  }
 
-Widget _buttonDivide() {
-  return OutlinedButton(
-    onPressed: () {
-      print('button divide');
-    },
-    child: const Text('/'),
-  );
-}
+  Widget _buttonDivide() {
+    return OutlinedButton(
+        onPressed: () {
+          _labelText += '/';
+          setState(() {});
+        },
+        child: const Text('/'),
+        style: TextButton.styleFrom(
+          padding: const EdgeInsets.all(12.0),
+          textStyle: const TextStyle(fontSize: 15),
+          backgroundColor: Colors.transparent,
+        ));
+  }
 
-Widget _buttonMultiply() {
-  return OutlinedButton(
-    onPressed: () {
-      print('button X');
-    },
-    child: const Text('X'),
-  );
-}
+  Widget _buttonMultiply() {
+    return OutlinedButton(
+        onPressed: () {
+          _labelText += 'X';
+          setState(() {});
+        },
+        child: const Text('X'),
+        style: TextButton.styleFrom(
+          padding: const EdgeInsets.all(12.0),
+          textStyle: const TextStyle(fontSize: 15),
+          backgroundColor: Colors.transparent,
+        ));
+  }
 
-Widget _buttonEqualTo() {
-  return OutlinedButton(
-    onPressed: () {
-      print('button =');
-    },
-    child: const Text('='),
-  );
+  Widget _buttonEqualTo() {
+    return OutlinedButton(
+        onPressed: () {
+          _labelText += '=';
+          setState(() {});
+        },
+        child: const Text('='),
+        style: TextButton.styleFrom(
+          padding: const EdgeInsets.all(12.0),
+          textStyle: const TextStyle(fontSize: 15),
+          backgroundColor: Colors.transparent,
+        ));
+  }
 }
