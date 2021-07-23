@@ -305,7 +305,7 @@ class _CalculatorPageState extends State<CalculatorPage> {
   Widget _buttonEqualTo() {
     return OutlinedButton(
         onPressed: () {
-          _labelText += '=';
+          _labelText = _calculate(_labelText).toString();
           setState(() {});
         },
         child: const Text('='),
@@ -314,5 +314,50 @@ class _CalculatorPageState extends State<CalculatorPage> {
           textStyle: const TextStyle(fontSize: 15),
           backgroundColor: Colors.transparent,
         ));
+  }
+
+  String _calculate(String toCalculate) {
+    if (toCalculate.contains('X'))
+      return _multiply(toCalculate);
+    else if (toCalculate.contains('/'))
+      return _divide(toCalculate);
+    else if (toCalculate.contains('+'))
+      return _add(toCalculate);
+    else
+      return _rest(toCalculate);
+  }
+
+  String _rest(String toCalculate) {
+    List<String> numbers = toCalculate.split('-');
+    int number1 = int.parse(numbers.first);
+    int number2 = int.parse(numbers.last);
+
+    return (number1 - number2).toString();
+  }
+
+  String _add(String toCalculate) {
+    List<String> numbers = toCalculate.split('+');
+    int number1 = int.parse(numbers.first);
+    int number2 = int.parse(numbers.last);
+
+    return (number1 + number2).toString();
+  }
+
+  String _multiply(String toCalculate) {
+    List<String> numbers = toCalculate.split('X');
+    int number1 = int.parse(numbers.first);
+    int number2 = int.parse(numbers.last);
+
+    return (number1 * number2).toString();
+  }
+
+  String _divide(String toCalculate) {
+    List<String> numbers = toCalculate.split('/');
+    int number1 = int.parse(numbers.first);
+    int number2 = int.parse(numbers.last);
+
+    if (number2 == 0) throw new Exception("No se puede dividir entre cero");
+
+    return (number1 / number2).toString();
   }
 }
